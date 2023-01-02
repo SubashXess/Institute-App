@@ -11,6 +11,11 @@ class AppTextTheme {
   static const Color appTextThemeLight = Color.fromARGB(160, 0, 8, 20);
 }
 
+class AppIconTheme {
+  static const Color appIconThemeDark = Color(0xFF000814);
+  static const Color appIconThemeLight = Color.fromARGB(160, 0, 8, 20);
+}
+
 class AppTextFieldTheme {
   static const Color appTextFieldTheme = Color(0xFFF1F2F3);
 }

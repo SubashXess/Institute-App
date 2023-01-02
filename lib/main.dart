@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:institute_app/constants/routes.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/navigationbar_providers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Institute App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/signin_page',
-      routes: routes,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Institute App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        initialRoute: '/dashboard', // signin_page
+        routes: routes,
+      ),
     );
+    // return
   }
 }

@@ -14,8 +14,6 @@ class EmailVerificationPage extends StatefulWidget {
 }
 
 class _EmailVerificationPageState extends State<EmailVerificationPage> {
-  bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
