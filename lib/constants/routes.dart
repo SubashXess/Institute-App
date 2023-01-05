@@ -6,6 +6,7 @@ import 'package:institute_app/screens/homepage/homepage.dart';
 import 'package:institute_app/screens/profilepage/profilepage.dart';
 import 'package:institute_app/screens/searchpage/searchpage.dart';
 import 'package:institute_app/screens/signup_page/signup_page.dart';
+import 'package:institute_app/screens/test_page/testpage1.dart';
 import 'package:institute_app/screens/verification_page/email_verification_page.dart';
 import 'package:institute_app/screens/verification_page/forgot_password_verification_waiting_page.dart';
 
@@ -23,4 +24,8 @@ final Map<String, WidgetBuilder> routes = {
   '/coursepage': (context) => const CoursePage(),
   '/searchpage': (context) => const SearchPage(),
   '/profilepage': (context) => const ProfilePage(),
+
+
+  // App Test Page
+  '/testpage1': (context) => const TestPage1(),
 };

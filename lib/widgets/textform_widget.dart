@@ -89,3 +89,51 @@ class TextFormWidget extends StatelessWidget {
     );
   }
 }
+
+class SearchFieldWidget extends StatelessWidget {
+  const SearchFieldWidget({
+    super.key,
+    required this.controller,
+    required this.node,
+    this.onChanged,
+    required this.hint,
+    this.prefixIcon,
+    this.onTap,
+  });
+
+  final TextEditingController controller;
+  final FocusNode node;
+  final Function(String)? onChanged;
+  final VoidCallback? onTap;
+  final String hint;
+  final Widget? prefixIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      focusNode: node,
+      onChanged: onChanged,
+      onTap: onTap,
+      cursorColor: AppTheme.appThemeColor,
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: AppTextFieldTheme.appTextFieldThemeShade1,
+        hintText: hint,
+        hintStyle: AppTextStyle.h4TextStyle(
+            fontWeight: FontWeight.w400,
+            size: 14.0,
+            color: AppTextTheme.appTextThemeLight.withOpacity(0.46)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide.none,
+        ),
+        isDense: true,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        prefixIcon: prefixIcon,
+      ),
+    );
+  }
+}

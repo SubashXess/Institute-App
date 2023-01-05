@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:institute_app/constants/dimensions.dart';
 import 'package:institute_app/constants/textstyles.dart';
 import 'package:institute_app/constants/themes.dart';
-import 'package:institute_app/widgets/textform_widget.dart';
 
 import '../../widgets/dashboard_appbar_widget.dart';
+import '../../widgets/textform_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -66,9 +66,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                       Icons.search_rounded,
                       size: AppIconDimensions.appIconSystemSize,
                     ),
-                    onTap: () {
-                      _animationController.reverse();
-                    },
+                    onTap: () {},
                     onChanged: (value) {},
                   ),
                 ),
@@ -84,13 +82,12 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                   ),
                   child: InkWell(
                     onTap: () {
-                      _animationController.forward();
-                      // if (_first) {
-                      //   _animationController.forward();
-                      // } else {
-                      //   _animationController.reverse();
-                      // }
-                      // _first = !_first;
+                      if (_first) {
+                        _animationController.forward();
+                      } else {
+                        _animationController.reverse();
+                      }
+                      _first = !_first;
                     },
                     child: Stack(
                       children: [
@@ -151,52 +148,4 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
     begin: const RelativeRect.fromLTRB(100, 100, 0, 0),
     end: const RelativeRect.fromLTRB(0, 0, 10, 10),
   );
-}
-
-class SearchFieldWidget extends StatelessWidget {
-  const SearchFieldWidget({
-    super.key,
-    required this.controller,
-    required this.node,
-    this.onChanged,
-    required this.hint,
-    this.prefixIcon,
-    this.onTap,
-  });
-
-  final TextEditingController controller;
-  final FocusNode node;
-  final Function(String)? onChanged;
-  final VoidCallback? onTap;
-  final String hint;
-  final Widget? prefixIcon;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      focusNode: node,
-      onChanged: onChanged,
-      onTap: onTap,
-      cursorColor: AppTheme.appThemeColor,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: AppTextFieldTheme.appTextFieldThemeShade1,
-        hintText: hint,
-        hintStyle: AppTextStyle.h4TextStyle(
-            fontWeight: FontWeight.w400,
-            size: 14.0,
-            color: AppTextTheme.appTextThemeLight.withOpacity(0.46)),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide.none,
-        ),
-        isDense: true,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        prefixIcon: prefixIcon,
-      ),
-    );
-  }
 }
