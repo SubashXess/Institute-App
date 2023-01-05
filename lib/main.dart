@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:institute_app/constants/routes.dart';
 import 'package:provider/provider.dart';
-
 import 'providers/navigationbar_providers.dart';
 
 void main() {

@@ -10,7 +10,6 @@ import 'package:institute_app/screens/homepage/homepage.dart';
 import 'package:institute_app/screens/profilepage/profilepage.dart';
 import 'package:institute_app/screens/searchpage/searchpage.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/navigationbar_providers.dart';
 
 class Dashboard extends StatefulWidget {
@@ -43,13 +42,27 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     print('load');
-    return Scaffold(
-      bottomNavigationBar:
-          NavigationBarWidget(size: size, iconFilled: iconFilled, label: label),
-      body: PageStorage(
-        bucket: _bucket,
-        child: Consumer<BottomNavBarProvider>(
-          builder: (context, value, child) => pages[value.currentIndex],
+    return WillPopScope(
+      onWillPop: () async {
+        final provider =
+            Provider.of<BottomNavBarProvider>(context, listen: false);
+        if (provider.currentIndex < 1) {
+          return true;
+        } else {
+          Provider.of<BottomNavBarProvider>(context, listen: false)
+              .setCurrentIndex(0);
+
+          return false;
+        }
+      },
+      child: Scaffold(
+        bottomNavigationBar: NavigationBarWidget(
+            size: size, iconFilled: iconFilled, label: label),
+        body: PageStorage(
+          bucket: _bucket,
+          child: Consumer<BottomNavBarProvider>(
+            builder: (context, value, child) => pages[value.currentIndex],
+          ),
         ),
       ),
     );
@@ -114,8 +127,8 @@ class NavigationBarWidget extends StatelessWidget {
                   provider: value,
                   index: index,
                   onTap: () {
-                    print(index);
-                    value.currentIndex = index;
+                    // value.setcurrentIndex = index;
+                    value.setCurrentIndex(index);
                   },
                 );
               });

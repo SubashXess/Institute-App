@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/dashboard_appbar_widget.dart';
+
 class CoursePage extends StatelessWidget {
   const CoursePage({super.key});
 
@@ -10,6 +12,9 @@ class CoursePage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
+            SliverToBoxAdapter(
+                child: DashboardAppBarWidget(
+                    size: size, title: 'Course', city: 'Bhubaneswar')),
             SliverToBoxAdapter(
               child: Container(
                 width: size.width,

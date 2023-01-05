@@ -18,6 +18,7 @@ class AppIconTheme {
 
 class AppTextFieldTheme {
   static const Color appTextFieldTheme = Color(0xFFF1F2F3);
+  static const Color appTextFieldThemeShade1 = Color(0xFFDEE0E3); // E9EAEC
 }
 
 class AppContainerTheme {
