@@ -92,7 +92,7 @@ class _TestPage1State extends State<TestPage1> {
               child: SafeArea(
                 child: Stack(
                   alignment: Alignment.topLeft,
-                  children: [
+                  children: [ 
                     AnimatedPositioned(
                       width: size.width,
                       duration: duration,
