@@ -146,7 +146,7 @@ class _TestPage1State extends State<TestPage1> {
                     ),
                     AnimatedPositioned(
                       height: 40.0,
-                      width: selected ? size.width / 3.0 - 48.0 : 0.0, // 2.6
+                      // width: selected ? size.width / 3.0 - 48.0 : 0.0, // 2.6
                       bottom: selected ? 16.0 : 16.0,
                       right: selected ? 16.0 : 0.0,
                       duration: duration,
@@ -166,7 +166,7 @@ class _TestPage1State extends State<TestPage1> {
                             alignment: Alignment.centerRight,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              // color: Colors.deepPurple.shade200,
+                              color: Colors.red.shade200,
                             ),
                             child: Text(
                               'Cancel',
