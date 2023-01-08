@@ -44,4 +44,18 @@ class AppTextStyle {
       wordSpacing: wordSpacing,
     );
   }
+
+  static TextStyle titleTextStyle(
+      {Color color = AppTextTheme.appTextThemeDark,
+      FontWeight fontWeight = FontWeight.w500,
+      double size = 15.0}) {
+    return TextStyle(fontSize: size, fontWeight: fontWeight, color: color);
+  }
+
+  static TextStyle subtitleTextStyle(
+      {Color color = AppTextTheme.appTextThemeLight,
+      FontWeight fontWeight = FontWeight.w500,
+      double size = 12.0}) {
+    return TextStyle(fontSize: size, fontWeight: fontWeight, color: color);
+  }
 }

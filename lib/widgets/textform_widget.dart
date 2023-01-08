@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:institute_app/constants/textstyles.dart';
+import '../constants/dimensions.dart';
 import '../constants/themes.dart';
 
 class TextFormWidget extends StatelessWidget {
@@ -133,6 +134,54 @@ class SearchFieldWidget extends StatelessWidget {
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         prefixIcon: prefixIcon,
+      ),
+    );
+  }
+}
+
+class SearchFieldWidget2 extends StatelessWidget {
+  const SearchFieldWidget2(
+      {super.key,
+      required this.controller,
+      required this.node,
+      required this.onTap,
+      required this.hint,
+      required this.icon,
+      this.onChanged});
+
+  final TextEditingController controller;
+  final FocusNode node;
+  final VoidCallback onTap;
+  final String hint;
+  final IconData icon;
+  final Function(String)? onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      focusNode: node,
+      cursorColor: AppTheme.appThemeColor,
+      onTap: onTap,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        fillColor: AppTextFieldTheme.appTextFieldThemeShade1,
+        filled: true,
+        hintText: hint,
+        hintStyle: AppTextStyle.h4TextStyle(color: Colors.black54),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+        isDense: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide.none),
+        prefixIconConstraints: const BoxConstraints(
+            minWidth: 40.0, minHeight: 20.0, maxWidth: 40.0),
+        prefixIcon: Icon(
+          icon,
+          size: AppIconDimensions.appIconSystemSize,
+          color: node.hasFocus ? AppTheme.appThemeColor : Colors.black54,
+        ),
       ),
     );
   }
