@@ -3,6 +3,7 @@ import 'package:institute_app/screens/coursepage/coursepage.dart';
 import 'package:institute_app/screens/dashboard.dart';
 import 'package:institute_app/screens/forgot_password_page/forgot_password_page.dart';
 import 'package:institute_app/screens/homepage/homepage.dart';
+import 'package:institute_app/screens/login_type_page/login_type_page.dart';
 import 'package:institute_app/screens/profilepage/profilepage.dart';
 import 'package:institute_app/screens/searchpage/searchpage.dart';
 import 'package:institute_app/screens/signup_page/signup_page.dart';
@@ -14,6 +15,7 @@ import 'package:institute_app/screens/verification_page/forgot_password_verifica
 import '../screens/signin_page/signin_page.dart';
 
 final Map<String, WidgetBuilder> routes = {
+  '/login_type_page': (context) => const LoginTypePage(),
   '/signin_page': (context) => const SignInPage(),
   '/signup_page': (context) => const SignUpPage(),
   '/forgot_password_page': (context) => const ForgotPasswordPage(),

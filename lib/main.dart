@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         title: 'Institute App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.blue),
-        initialRoute: '/dashboard', // signin_page   dashboard    testpage2
+        initialRoute:
+            '/login_type_page', // signin_page   dashboard    login_type_page
         routes: routes,
       ),
     );
