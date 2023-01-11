@@ -147,7 +147,8 @@ class SearchFieldWidget2 extends StatelessWidget {
       required this.onTap,
       required this.hint,
       required this.icon,
-      this.onChanged});
+      this.onChanged,
+      this.autofocus = false});
 
   final TextEditingController controller;
   final FocusNode node;
@@ -155,12 +156,14 @@ class SearchFieldWidget2 extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function(String)? onChanged;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       focusNode: node,
+      autofocus: autofocus,
       cursorColor: AppTheme.appThemeColor,
       onTap: onTap,
       onChanged: onChanged,

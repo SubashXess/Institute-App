@@ -39,11 +39,12 @@ class DashboardAppBarWidget extends StatelessWidget {
               : Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         title,
                         style: AppTextStyle.h0TextStyle(
-                            fontWeight: FontWeight.w600),
+                            color: Colors.white, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(height: 8.0),
                       Row(
@@ -52,8 +53,7 @@ class DashboardAppBarWidget extends StatelessWidget {
                             'Current City ',
                             style: AppTextStyle.h4TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: AppTextTheme.appTextThemeDark
-                                  .withOpacity(0.56),
+                              color: Colors.white54,
                               size: 13.0,
                             ),
                           ),
@@ -68,7 +68,7 @@ class DashboardAppBarWidget extends StatelessWidget {
                                 overflow: TextOverflow.clip,
                                 style: AppTextStyle.h4TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: AppTheme.appThemeColor,
+                                  color: Colors.white,
                                   size: 13.0,
                                 ),
                               ),

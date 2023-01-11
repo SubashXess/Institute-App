@@ -26,11 +26,11 @@ class _SearchPageState extends State<SearchPage>
   bool selected = false;
   bool isVisible = true;
   double opacityLevel = 1.0;
+  bool autofocus = false;
 
   @override
   void initState() {
     super.initState();
-
     _searchController = TextEditingController();
     _searchNode = FocusNode();
     _scrollController = ScrollController()..addListener(onListen);
@@ -193,7 +193,8 @@ class _SearchPageState extends State<SearchPage>
                                   left: 16.0, right: 16.0, top: 16.0),
                               child: Text(
                                 'Search',
-                                style: AppTextStyle.h0TextStyle(),
+                                style: AppTextStyle.h0TextStyle(
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
@@ -212,6 +213,7 @@ class _SearchPageState extends State<SearchPage>
                                   child: SearchFieldWidget2(
                                     controller: _searchController,
                                     node: _searchNode,
+                                    autofocus: autofocus,
                                     onTap: () {
                                       setState(() {
                                         selected = true;
