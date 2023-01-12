@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants/boxshadow.dart';
+import '../models/app_content_model.dart';
 import '../providers/navigationbar_providers.dart';
-import '../screens/dashboard/components/icon_widget.dart';
+import '../user_view_ui/dashboard/components/icon_widget.dart';
 
 class NavigationBarWidget extends StatelessWidget {
   const NavigationBarWidget({
     super.key,
     required this.size,
-    required this.iconFilled,
-    required this.label,
-    required this.iconOutlined,
+    required this.items,
   });
 
   final Size size;
-  final List<String> iconFilled;
-  final List<String> iconOutlined;
-  final List<String> label;
+  final UserViewNavItemsModel items;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +38,13 @@ class NavigationBarWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
-            children: List.generate(iconFilled.length, (index) {
+            children: List.generate(items.navitems.length, (index) {
               return Consumer<BottomNavBarProvider>(
                   builder: (context, value, child) {
                 return IconWidget(
-                  iconOutlined: iconOutlined[index],
-                  iconFilled: iconFilled[index],
-                  label: label[index],
+                  iconOutlined: items.navitems[index].iconOutlined,
+                  iconFilled: items.navitems[index].iconFilled,
+                  label: items.navitems[index].title,
                   provider: value,
                   index: index,
                   onTap: () => value.setCurrentIndex(index),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/dashboard_appbar_widget.dart';
 
-class CoursePage extends StatelessWidget {
+class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
 
+  @override
+  State<CoursePage> createState() => _CoursePageState();
+}
+
+class _CoursePageState extends State<CoursePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

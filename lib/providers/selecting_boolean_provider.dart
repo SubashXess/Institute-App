@@ -22,3 +22,5 @@ class UserLoginTypeSelectedProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+

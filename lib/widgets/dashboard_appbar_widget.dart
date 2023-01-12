@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:institute_app/constants/constants.dart';
 import '../constants/boxshadow.dart';
 import '../constants/dimensions.dart';
 import '../constants/textstyles.dart';
@@ -29,7 +30,7 @@ class DashboardAppBarWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           isSearchPage
               ? Text(
@@ -44,7 +45,8 @@ class DashboardAppBarWidget extends StatelessWidget {
                       Text(
                         title,
                         style: AppTextStyle.h0TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w600),
+                            color: AppTextTheme.appTextThemeDark,
+                            fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(height: 8.0),
                       Row(
@@ -53,32 +55,45 @@ class DashboardAppBarWidget extends StatelessWidget {
                             'Current City ',
                             style: AppTextStyle.h4TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: Colors.white54,
+                              color: AppTextTheme.appTextThemeDark,
                               size: 13.0,
                             ),
                           ),
                           Flexible(
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () {},
-                              child: Text(
-                                city,
-                                maxLines: 1,
-                                overflow: TextOverflow.clip,
-                                style: AppTextStyle.h4TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                  size: 13.0,
-                                ),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 4.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: AppTheme.appThemeLightColor,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () {},
+                                    child: Text(
+                                      city,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.clip,
+                                      style: AppTextStyle.h4TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppTheme.appThemeColor,
+                                        size: 13.0,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 2.0),
+                                  const Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    size: 14.0,
+                                    color: AppTheme.appThemeColorShade1,
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 2.0),
-                          Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            size: 14.0,
-                            color: Colors.grey.shade500,
                           ),
                         ],
                       ),
