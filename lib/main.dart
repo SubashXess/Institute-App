@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             bottomSheetTheme: const BottomSheetThemeData(
                 backgroundColor: Colors.transparent, elevation: 0.0)),
         initialRoute:
-            '/dashboard', // signin_page   dashboard    login_type_page   startpage
+            '/insertcoursespage', // signin_page   dashboard   //  insertcoursespage
         routes: routes,
       ),
     );

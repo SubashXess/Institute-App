@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:institute_app/provider_view_ui/insert_courses_page/insert_courses_page.dart';
 import 'package:institute_app/screens/forgot_password_page/forgot_password_page.dart';
 import 'package:institute_app/screens/login_type_page/login_type_page.dart';
 import 'package:institute_app/screens/signup_page/signup_page.dart';
@@ -35,4 +36,7 @@ final Map<String, WidgetBuilder> routes = {
   // App Test Page
   '/testpage1': (context) => const TestPage1(),
   '/testpage2': (context) => const TestPage2(),
+
+  // ======================= provider routes ===================== //
+  '/insertcoursespage': (context) => const InsertCoursesPage(),
 };

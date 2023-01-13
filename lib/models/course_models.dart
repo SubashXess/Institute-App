@@ -27,6 +27,10 @@ class CourseModel {
   final String enrollEndDate;
   final List<CourseSyllabus> syllabus;
   final WeekendShedule shedule;
+  final bool isPopular;
+  final bool isVerified;
+  final bool isBest;
+  final bool isFeatured;
   final String createdAt;
   final String updatedAt;
   final bool status;
@@ -58,6 +62,10 @@ class CourseModel {
     required this.enrollEndDate,
     required this.syllabus,
     required this.shedule,
+    required this.isPopular,
+    required this.isBest,
+    required this.isVerified,
+    required this.isFeatured,
     required this.createdAt,
     required this.updatedAt,
     required this.status,
@@ -89,6 +97,10 @@ class CourseModel {
       enrollEndDate: res['enrollEndDate'],
       syllabus: res['syllabus'],
       shedule: res['shedule'],
+      isPopular: res['isPopular'],
+      isBest: res['isBest'],
+      isVerified: res['isVerified'],
+      isFeatured: res['isFeatured'],
       createdAt: res['createdAt'],
       updatedAt: res['updatedAt'],
       status: res['status'],
@@ -120,6 +132,10 @@ class CourseModel {
         'enrollEndDate': enrollEndDate,
         'syllabus': syllabus,
         'shedule': shedule,
+        'isPopular': isPopular,
+        'isBest': isBest,
+        'isVerified': isVerified,
+        'isFeatured': isFeatured,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
         'status': status,
@@ -197,6 +213,10 @@ class CourseModel {
       ],
       shedule:
           WeekendShedule(date: '', startTime: '8:00 AM', endTime: '10:00 AM'),
+      isBest: false,
+      isFeatured: false,
+      isPopular: false,
+      isVerified: false,
       createdAt: 'Jan 25, 2023',
       updatedAt: 'Jan 25, 2023',
       status: true,
