@@ -1,10 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-import 'dart:math';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:institute_app/components/custom_circular_indicator.dart';
 import 'package:institute_app/components/files_picker.dart';
 import 'package:institute_app/widgets/custom_radio_button.dart';
 import 'package:institute_app/widgets/picking_bottomsheet.dart';
@@ -14,8 +10,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:institute_app/constants/dimensions.dart';
 import 'package:institute_app/constants/textstyles.dart';
 import 'package:institute_app/constants/themes.dart';
-import 'package:institute_app/widgets/rounded_button.dart';
 import 'package:institute_app/widgets/textform_widget.dart';
+import 'package:provider/provider.dart';
+import '../../providers/radio_button_providers.dart';
 
 class InsertCoursesPage extends StatefulWidget {
   const InsertCoursesPage({super.key});
@@ -31,16 +28,18 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
   late TextEditingController _courseTitleController;
   late TextEditingController _subtitleController;
   late TextEditingController _descController;
+  late TextEditingController _maxUserController;
 
   late FocusNode _courseNameNode;
   late FocusNode _courseTitleNode;
   late FocusNode _subtitleNode;
   late FocusNode _descNode;
+  late FocusNode _maxUserNode;
 
   bool autovalidateMode = false;
   File? image;
   bool isLoading = false;
-  String? _groupValue;
+  int selectedValue = 0;
 
   @override
   void initState() {
@@ -49,10 +48,12 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
     _courseTitleController = TextEditingController()..addListener(onListen);
     _subtitleController = TextEditingController()..addListener(onListen);
     _descController = TextEditingController()..addListener(onListen);
+    _maxUserController = TextEditingController()..addListener(onListen);
     _courseNameNode = FocusNode()..addListener(onListen);
     _courseTitleNode = FocusNode()..addListener(onListen);
     _subtitleNode = FocusNode()..addListener(onListen);
     _descNode = FocusNode()..addListener(onListen);
+    _maxUserNode = FocusNode()..addListener(onListen);
   }
 
   @override
@@ -66,10 +67,13 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
     _subtitleController.removeListener(onListen);
     _descController.dispose();
     _descController.removeListener(onListen);
+    _maxUserController.dispose();
+    _maxUserController.removeListener(onListen);
     _courseNameNode.dispose();
     _courseTitleNode.dispose();
     _subtitleNode.dispose();
     _descNode.dispose();
+    _maxUserNode.dispose();
   }
 
   void onListen() {
@@ -266,12 +270,137 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
                             ),
                             const SizedBox(height: 10.0),
                             Text(
-                              'You\'re required to tell us whether your course are made for kids.',
+                              'You\'re required to tell us whether your course are visible for kids or students.',
                               style: AppTextStyle.h4TextStyle(
                                 fontWeight: FontWeight.normal,
-                                color: Colors.grey.shade400,
+                                color: Colors.grey.shade500,
                               ),
                             ),
+                            const SizedBox(height: 10.0),
+                            Consumer<RadioButtonProviders>(
+                                builder: (context, provider, child) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomRadioButton<String>(
+                                    value: 'Student',
+                                    title: 'Student',
+                                    groupValue: provider.selectedValue,
+                                    onChanged: (value) {
+                                      provider.chooseValue(value!);
+                                      print(provider.selectedValue);
+                                    },
+                                    selected: false,
+                                  ),
+                                  CustomRadioButton<String>(
+                                    value: 'Parent',
+                                    title: 'Parent (Kids)',
+                                    groupValue: provider.selectedValue,
+                                    onChanged: (value) {
+                                      provider.chooseValue(value!);
+                                      print(provider.selectedValue);
+                                    },
+                                    selected: false,
+                                  ),
+                                ],
+                              );
+                            }),
+                            const SizedBox(height: 16.0),
+                            Text('Enrollment',
+                                style: AppTextStyle.h3TextStyle()),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              'Add a start date and/or end date to limit when users can enroll for this course. If left blank, enrollment will be indefinite. By default, if left blank users will have unlimited time to enoll for and access this course.',
+                              style: AppTextStyle.h4TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: size.width,
+                                    height: 46.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: AppContainerTheme
+                                          .appContainerDefaultTheme,
+                                    ),
+                                    child: Center(
+                                      child: Text('Enroll Start Date',
+                                          style: AppTextStyle.h4TextStyle(
+                                              color: Colors.grey.shade500)),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16.0),
+                                Expanded(
+                                  child: Container(
+                                    width: size.width,
+                                    height: 46.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: AppContainerTheme
+                                          .appContainerDefaultTheme,
+                                    ),
+                                    child: Center(
+                                      child: Text('Enroll End Date',
+                                          style: AppTextStyle.h4TextStyle(
+                                              color: Colors.grey.shade500)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16.0),
+                            Text('Total Open Enrollment',
+                                style: AppTextStyle.h4TextStyle(
+                                    fontWeight: FontWeight.w500)),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              'Set the maximum number of users that can be enrolled for this course.',
+                              style: AppTextStyle.h4TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormWidget2(
+                              hint: 'Maximum users',
+                              controller: _maxUserController,
+                              node: _maxUserNode,
+                              maxLength: 3,
+                              keyboardType: TextInputType.number,
+                              counterText: '',
+                              autovalidateMode: autovalidateMode
+                                  ? AutovalidateMode.onUserInteraction
+                                  : AutovalidateMode.disabled,
+                              fillColor:
+                                  AppContainerTheme.appContainerDefaultTheme,
+                              textInputAction: TextInputAction.done,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Required maximum number of user';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 16.0),
+                            Text('Pricing',
+                                style: AppTextStyle.h4TextStyle(
+                                    fontWeight: FontWeight.w500)),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              'Set the initial price on the course.',
+                              style: AppTextStyle.h4TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
                           ],
                         ),
                       ),

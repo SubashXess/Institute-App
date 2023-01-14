@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:institute_app/constants/routes.dart';
+import 'package:institute_app/providers/radio_button_providers.dart';
 import 'package:institute_app/providers/selecting_boolean_provider.dart';
 import 'package:provider/provider.dart';
 import 'providers/navigationbar_providers.dart';
@@ -18,12 +19,19 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),
         ChangeNotifierProvider(
             create: (context) => UserLoginTypeSelectedProvider()),
+        ChangeNotifierProvider(create: (context) => RadioButtonProviders()),
       ],
       child: MaterialApp(
         title: 'Institute App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primarySwatch: Colors.blue,
+            radioTheme: const RadioThemeData(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                visualDensity: VisualDensity(
+                    vertical: VisualDensity.minimumDensity,
+                    horizontal: VisualDensity.minimumDensity),
+                splashRadius: 20.0),
             bottomSheetTheme: const BottomSheetThemeData(
                 backgroundColor: Colors.transparent, elevation: 0.0)),
         initialRoute:
