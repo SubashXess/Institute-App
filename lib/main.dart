@@ -3,6 +3,7 @@ import 'package:institute_app/constants/routes.dart';
 import 'package:institute_app/providers/radio_button_providers.dart';
 import 'package:institute_app/providers/selecting_boolean_provider.dart';
 import 'package:provider/provider.dart';
+import 'providers/course_insert_provider.dart';
 import 'providers/navigationbar_providers.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => UserLoginTypeSelectedProvider()),
         ChangeNotifierProvider(create: (context) => RadioButtonProviders()),
+        ChangeNotifierProvider(create: (context) => CourseInsertProvider()),
       ],
       child: MaterialApp(
         title: 'Institute App',
