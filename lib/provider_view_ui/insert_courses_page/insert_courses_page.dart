@@ -52,8 +52,7 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
     _subtitleController = TextEditingController()..addListener(onListen);
     _descController = TextEditingController()..addListener(onListen);
     _maxUserController = TextEditingController()..addListener(onListen);
-    _amountController = TextEditingController(text: '0.00')
-      ..addListener(onListen);
+    _amountController = TextEditingController()..addListener(onListen);
     _courseNameNode = FocusNode()..addListener(onListen);
     _courseTitleNode = FocusNode()..addListener(onListen);
     _subtitleNode = FocusNode()..addListener(onListen);
@@ -400,9 +399,94 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
                               ],
                             ),
                             const SizedBox(height: 16.0),
+                            Text('Course Schedule',
+                                style: AppTextStyle.h3TextStyle()),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              'Add a start and end time for this course.',
+                              style: AppTextStyle.h4TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                            Consumer<CourseInsertProvider>(
+                                builder: (context, provider, child) {
+                              return Row(
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () =>
+                                          provider.pickStartTime(context),
+                                      child: Container(
+                                        width: size.width,
+                                        height: 46.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: AppTextFieldTheme
+                                              .appTextFieldTheme,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            provider.startTime != null
+                                                ? provider.startTime!
+                                                : 'Start Time',
+                                            style: AppTextStyle.h4TextStyle(
+                                              color: provider.startTime != null
+                                                  ? AppTextTheme
+                                                      .appTextThemeDark
+                                                  : Colors.grey.shade500,
+                                              fontWeight:
+                                                  provider.startTime != null
+                                                      ? FontWeight.w500
+                                                      : FontWeight.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16.0),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () =>
+                                          provider.pickEndTime(context),
+                                      child: Container(
+                                        width: size.width,
+                                        height: 46.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: AppTextFieldTheme
+                                              .appTextFieldTheme,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            provider.endTime != null
+                                                ? provider.endTime!
+                                                : 'End Time',
+                                            style: AppTextStyle.h4TextStyle(
+                                              color: provider.endTime != null
+                                                  ? AppTextTheme
+                                                      .appTextThemeDark
+                                                  : Colors.grey.shade500,
+                                              fontWeight:
+                                                  provider.endTime != null
+                                                      ? FontWeight.w500
+                                                      : FontWeight.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                            const SizedBox(height: 16.0),
                             Text('Total Open Enrollment',
-                                style: AppTextStyle.h4TextStyle(
-                                    fontWeight: FontWeight.w500)),
+                                style: AppTextStyle.h3TextStyle()),
                             const SizedBox(height: 10.0),
                             Text(
                               'Set the maximum number of users that can be enrolled for this course.',
@@ -433,9 +517,7 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
                               },
                             ),
                             const SizedBox(height: 16.0),
-                            Text('Pricing',
-                                style: AppTextStyle.h4TextStyle(
-                                    fontWeight: FontWeight.w500)),
+                            Text('Pricing', style: AppTextStyle.h3TextStyle()),
                             const SizedBox(height: 10.0),
                             Text(
                               'Set the initial price on the course.',
@@ -470,24 +552,23 @@ class _InsertCoursesPageState extends State<InsertCoursesPage> {
                                   ),
                                   Expanded(
                                     flex: 2,
-                                    child: Container(
-                                      width: size.width,
-                                      // color: Colors.red,
-
-                                      child: TextFormField(
-                                        textAlign: TextAlign.end,
-                                        controller: _amountController,
-                                        focusNode: _amountNode,
-                                        keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
-                                          // hintText:
-                                          //     '${AppUnicode.rupeeUnicode}0.00',
-                                          border: InputBorder.none,
-                                          enabledBorder: InputBorder.none,
-                                          contentPadding: EdgeInsets.zero,
-                                          isDense: true,
-                                        ),
+                                    child: TextFormField(
+                                      textAlign: TextAlign.end,
+                                      controller: _amountController,
+                                      focusNode: _amountNode,
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            '${AppUnicode.rupeeUnicode}0.00',
+                                        border: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        contentPadding: EdgeInsets.zero,
+                                        isDense: true,
+                                        counterText: '',
                                       ),
+                                      maxLength: 6,
+                                      smartQuotesType: SmartQuotesType.disabled,
+                                      textInputAction: TextInputAction.done,
                                     ),
                                   ),
                                 ],

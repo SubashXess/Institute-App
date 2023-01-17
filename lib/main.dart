@@ -37,9 +37,17 @@ class MyApp extends StatelessWidget {
             bottomSheetTheme: const BottomSheetThemeData(
                 backgroundColor: Colors.transparent, elevation: 0.0)),
         initialRoute:
-            '/insertcoursespage', // signin_page   dashboard   //  insertcoursespage
+            '/dashboard', // signin_page   dashboard   //  insertcoursespage    // startpage
         routes: routes,
       ),
     );
   }
 }
+
+
+/*
+  Start Page ----> Phone Login Page ----> User Type Page ----> Filter/Search Course/Tutor ----> Dashboard
+
+  ** User Type Page --->  // Are you looking for tutor? or join as tutor?
+
+ */

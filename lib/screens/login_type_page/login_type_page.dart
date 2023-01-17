@@ -22,10 +22,11 @@ class LoginTypePage extends StatefulWidget {
 class _LoginTypePageState extends State<LoginTypePage> {
   final Duration duration = const Duration(milliseconds: 1200);
 
+ 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print('loading');
     return WillPopScope(
       onWillPop: () async {
         final provider =
